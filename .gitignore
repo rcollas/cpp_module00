@@ -1,0 +1,5 @@
+.idea
+phonebook
+megaphone
+*.o
+objs
