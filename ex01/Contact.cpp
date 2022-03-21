@@ -15,9 +15,20 @@ std::string truncate(std::string str, int width) {
   return str;
 }
 
-void Contact::updateIndex(int newIndex)
-{
+void Contact::setIndex(int newIndex) {
 	m_index = newIndex;
+}
+
+void Contact::setFirstName(std::string firstName) {
+	m_firstName = firstName;
+}
+
+void Contact::setLastName(std::string lastName) {
+	m_lastName = lastName;
+}
+
+void Contact::setNickName(std::string nickName) {
+	m_nickName = nickName;
 }
 
 void Contact::printContact() {

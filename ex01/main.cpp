@@ -1,26 +1,36 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
+void welcomeMessage()
+{
+	std::cout << "Available commands : " << std::endl;
+	std::cout << "ADD" << std::endl;
+	std::cout << "SEARCH" << std::endl;
+	std::cout << "EXIT" << std::endl;
+}
+
+void selectItem(PhoneBook myPhoneBook)
+{
+	while (1) {
+		welcomeMessage();
+		std::string input;
+		std::cin >> input;
+		if (input == "ADD")
+			myPhoneBook.addContact();
+		else if (input == "SEARCH")
+			myPhoneBook.searchContact();
+		else if (input == "EXIT")
+			return ;
+		else
+			std::cout << "Invalid command" << std::endl;
+	}
+}
+
 int main(void)
 {
-	Contact contactTest(1, "Robin", "Collas", "rcollas");
-	Contact longContactTest(1, "Romualdinoh", "De la Bonne Esperance",
-							"Romumu");
-	Contact defaultContact;
 	PhoneBook myPhoneBook;
 
-	myPhoneBook.addContact(contactTest);
-	myPhoneBook.addContact(longContactTest);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(defaultContact);
-	myPhoneBook.addContact(longContactTest);
 	myPhoneBook.printPhoneBook();
+	selectItem(myPhoneBook);
 	return (0);
 }

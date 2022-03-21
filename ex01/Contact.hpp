@@ -12,7 +12,10 @@ class Contact {
 		Contact(int index, std::string firstName, std::string lastName,
 		        std::string nickName);
 		void printContact();
-		void updateIndex(int newIndex);
+		void setIndex(int newIndex);
+		void setFirstName(std::string firstName);
+		void setLastName(std::string lastName);
+		void setNickName(std::string nickName);
 
 	private:
 		int m_index;
