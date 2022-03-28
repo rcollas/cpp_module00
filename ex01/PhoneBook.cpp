@@ -1,54 +1,55 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook() : m_list(), m_contactCount(0)
+PhoneBook::PhoneBook()
+					:	m_list(),
+						m_phoneBookIsEmpty(true),
+						m_listIndex(0),
+						m_contactCount(0)
 {}
 
 void PhoneBook::searchContact()
 {
+	int input = 0;
 
-	if (m_contactCount == 0) {
+	if (m_phoneBookIsEmpty) {
 		std::cout << "The phonebook is empty" << std::endl;
 	}
 	else {
 		PhoneBook::printPhoneBook();
-		std::string input;
 		std::cin >> input;
+		while (std::cin.fail()) {
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Please enter a valid integer" << std::endl;
+			std::cin >> input;
+		}
 	}
+	if (input >= 1 && input <= m_contactCount)
+		m_list[input - 1].printContact();
+	else
+		std::cout << "Value " << input << " doesn't match any index" <<
+		std::endl;
 }
 
 void PhoneBook::addContact()
 {
 	Contact	newContact;
 
-	m_list[m_contactCount] = newContact;
-	newContact.setIndex(m_contactCount);
-	std::string input;
-	std::cout << "First name : "; std::cin >> input;
-	newContact.setFirstName(input);
-	std::cout << "Last name : ";  std::cin >> input;
-	newContact.setLastName(input);
-	std::cout << "Nick name : "; std::cin >> input;
-	newContact.setNickName(input);
-	m_list[m_contactCount] = newContact;
-	if (m_contactCount + 1 < MAX_CONTACT)
+	m_phoneBookIsEmpty = false;
+	newContact.fillInfo();
+	m_list[m_listIndex] = newContact;
+	m_listIndex++;
+	if (m_listIndex == MAX_CONTACT)
+		m_listIndex = 0;
+	if (m_contactCount != MAX_CONTACT)
 		m_contactCount++;
 }
 
 void PhoneBook::printPhoneBook()
 {
-	int	i = -1;
-	//for (int i = 0; i < m_contactCount; i++) {
-	//	m_list[i].printContact();
-	//}
-	while (++i < m_contactCount) {
-		m_list[i].printContact();
+	for (int i = 0; i < this->m_contactCount; i++) {
+		m_list[i].printSummarizeContact(i + 1);
 	}
 }
 
-int PhoneBook::getContactCount()
-{
-	return m_contactCount;
-}
-
-PhoneBook::~PhoneBook()
-{}
+PhoneBook::~PhoneBook() {}

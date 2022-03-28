@@ -11,10 +11,11 @@ class PhoneBook {
 		~PhoneBook();
 		void addContact();
 		void printPhoneBook();
-		int getContactCount();
 		void searchContact();
 	private:
 		Contact m_list[MAX_CONTACT];
+		bool m_phoneBookIsEmpty;
+		int m_listIndex;
 		int m_contactCount;
 };
 

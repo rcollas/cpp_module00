@@ -11,10 +11,15 @@ void welcomeMessage()
 
 void selectItem(PhoneBook myPhoneBook)
 {
-	while (1) {
+	while (true) {
 		welcomeMessage();
 		std::string input;
 		std::cin >> input;
+		if (std::cin.fail()) {
+			std::cin.clear();
+			std::cin.ignore();
+			std::cout << "Input error" << std::endl;
+		}
 		if (input == "ADD")
 			myPhoneBook.addContact();
 		else if (input == "SEARCH")
@@ -26,11 +31,10 @@ void selectItem(PhoneBook myPhoneBook)
 	}
 }
 
-int main(void)
+int main()
 {
 	PhoneBook myPhoneBook;
 
-	myPhoneBook.printPhoneBook();
 	selectItem(myPhoneBook);
 	return (0);
 }
