@@ -15,8 +15,7 @@ std::string truncate(std::string str, int width) {
   return str;
 }
 
-void Contact::updateIndex(int newIndex)
-{
+void Contact::updateIndex(int newIndex) {
 	m_index = newIndex;
 }
 
