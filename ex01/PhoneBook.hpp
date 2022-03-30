@@ -9,11 +9,14 @@ class PhoneBook {
 	public:
 		PhoneBook();
 		~PhoneBook();
-		void addContact(const Contact newContact);
+		void addContact();
 		void printPhoneBook();
+		void searchContact();
 	private:
 		Contact m_list[MAX_CONTACT];
-		int m_contactNumber;
+		bool m_phoneBookIsEmpty;
+		int m_listIndex;
+		int m_contactCount;
 };
 
 #endif
