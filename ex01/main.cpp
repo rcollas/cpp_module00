@@ -1,12 +1,36 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
+#include <stdlib.h>
 
 void welcomeMessage()
 {
-	std::cout << "Available commands : " << std::endl;
-	std::cout << "ADD" << std::endl;
-	std::cout << "SEARCH" << std::endl;
-	std::cout << "EXIT" << std::endl;
+	std::cout << "********** PHONEBOOK **********" << std::endl;
+	std::cout << "****** ADD, ";
+	std::cout << "SEARCH, ";
+	std::cout << "EXIT ******" << std::endl;
+	std::cout << "*******************************" << std::endl;
+}
+
+bool containsOnlySpaces(std::string str) {
+
+	std::string spaces = " \t\n\v\f\r";
+
+	return str.find_first_not_of(spaces)
+			== std::string::npos;
+}
+
+void safeGetLine(std::string& input) {
+
+	std::getline(std::cin, input);
+	if (std::cin.fail()) {
+		std::cin.clear();
+		std::cin.ignore();
+		exit(EXIT_FAILURE);
+	}
+	else if (input.empty() || containsOnlySpaces(input)) {
+		std::cout << "Empty line, please enter a value: ";
+		safeGetLine(input);
+	}
 }
 
 void selectItem(PhoneBook myPhoneBook)
@@ -14,12 +38,7 @@ void selectItem(PhoneBook myPhoneBook)
 	while (true) {
 		welcomeMessage();
 		std::string input;
-		std::cin >> input;
-		if (std::cin.fail()) {
-			std::cin.clear();
-			std::cin.ignore();
-			std::cout << "Input error" << std::endl;
-		}
+		safeGetLine(input);
 		if (input == "ADD")
 			myPhoneBook.addContact();
 		else if (input == "SEARCH")

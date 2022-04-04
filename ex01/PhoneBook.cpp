@@ -7,28 +7,29 @@ PhoneBook::PhoneBook()
 						m_contactCount(0)
 {}
 
+bool isInt(std::string str) {
+
+	return str.length() == 1 && str[0] >= '1'
+				&& str[0] <= '8';
+}
+
 void PhoneBook::searchContact()
 {
-	int input = 0;
+	std::string input;
 
 	if (m_phoneBookIsEmpty) {
 		std::cout << "The phonebook is empty" << std::endl;
 	}
 	else {
 		PhoneBook::printPhoneBook();
-		std::cin >> input;
-		while (std::cin.fail()) {
-			std::cin.clear();
-			std::cin.ignore();
-			std::cout << "Please enter a valid integer" << std::endl;
-			std::cin >> input;
-		}
+		safeGetLine(input);
+		if (isInt(input) && atoi(input.c_str()) >= 1 && atoi(input.c_str()) <=
+		m_contactCount)
+			m_list[atoi(input.c_str()) - 1].printContact();
+		else
+			std::cout << "Value " << input << " doesn't match any index" <<
+					  std::endl;
 	}
-	if (input >= 1 && input <= m_contactCount)
-		m_list[input - 1].printContact();
-	else
-		std::cout << "Value " << input << " doesn't match any index" <<
-		std::endl;
 }
 
 void PhoneBook::addContact()

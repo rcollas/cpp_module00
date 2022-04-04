@@ -5,6 +5,8 @@
 #include <iostream>
 #include <string>
 
+void safeGetLine(std::string& input);
+
 class Contact {
 	public:
 		Contact();

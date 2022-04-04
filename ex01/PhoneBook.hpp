@@ -2,8 +2,13 @@
 #define PHONE_BOOK_HPP
 
 #include "Contact.hpp"
+#include <iostream>
+#include <string>
+#include <stdlib.h>
 
 #define MAX_CONTACT 8
+
+void safeGetLine(std::string& input);
 
 class PhoneBook {
 	public:

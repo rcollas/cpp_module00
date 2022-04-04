@@ -20,23 +20,18 @@ std::string truncate(const std::string &str, int width) {
   return str;
 }
 
-<<<<<<< HEAD
-void Contact::updateIndex(int newIndex) {
-	m_index = newIndex;
-=======
 void Contact::fillInfo() {
 
 	std::cout << "First name : ";
-	std::cin >> m_firstName;
+	safeGetLine(m_firstName);
 	std::cout << "Last name : ";
-	std::cin >> m_lastName;
+	safeGetLine(m_lastName);
 	std::cout << "Nick name : ";
-	std::cin >> m_nickName;
+	safeGetLine(m_nickName);
 	std::cout << "Phone number : ";
-	std::cin >> m_phoneNumber;
+	safeGetLine(m_phoneNumber);
 	std::cout << "Darkest secret : ";
-	std::cin >> m_darkestSecret;
->>>>>>> ce3054db6086d453648e20053969a467995b9f37
+	safeGetLine(m_darkestSecret);
 }
 
 void Contact::printSummarizeContact(int index) const {
